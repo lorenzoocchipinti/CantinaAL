@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#6d2433" />
   <meta name="description" content="CantinaAL - cantina vini consultabile da smartphone e desktop." />
-  <link rel="manifest" href="manifest.json" />
+  <link rel="manifest" href="./manifest.json" />
   <title>CantinaAL</title>
   <style>
     :root{--bg:#f6f2ed;--card:#fffdf9;--text:#241c18;--muted:#6f675f;--primary:#6d2433;--line:#ddd6cf;--shadow:0 14px 34px rgba(0,0,0,.08)}
@@ -119,7 +119,7 @@
     el('filterMaturity').onchange=e=>{maturity=e.target.value; render()};
     el('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(wines,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='cantinaal.json';a.click();toast('Esportato')};
     el('importFile').onchange=async e=>{const f=e.target.files[0]; if(!f)return; try{wines=JSON.parse(await f.text()); render(); toast('Importato')}catch{toast('File non valido')} e.target.value=''};
-    load(); render(); if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js').catch(()=>{}))}
+    load(); render(); if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
   </script>
 </body>
 </html>
